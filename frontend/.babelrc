@@ -1,0 +1,44 @@
+{
+  "compact": true,
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 9"],
+        },
+      },
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-syntax-dynamic-import",
+    "macros",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "Config": "./src/shared/config",
+        "Redux": "./src/shared/redux",
+        "Component": "./src/shared/components",
+        "Detail": "./src/shared/pages/detail",
+        "Home": "./src/shared/pages/home",
+        "Helper": "./src/shared/helpers",
+      }
+    }],
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs",
+        "@babel/plugin-syntax-dynamic-import",
+      ],
+    },
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    }
+  },
+}
